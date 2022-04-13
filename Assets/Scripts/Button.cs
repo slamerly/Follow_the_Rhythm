@@ -68,6 +68,13 @@ public class Button : MonoBehaviour
                                     lightDirectionL.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
                                 }
                             }
+                            foreach(GameObject light in lightsDrumBeat)
+                            {
+                                if (light.transform.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumGood")
+                                {
+                                    StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                                }
+                            }
                         }
                     }
                 }

@@ -26,7 +26,7 @@ public class DrumBeat : MonoBehaviour
         StartCoroutine(PlayDrumSweet());
     }
 
-    private void Update()
+    /*private void Update()
     {
         do
         {
@@ -36,8 +36,9 @@ public class DrumBeat : MonoBehaviour
                 StartCoroutine(PlayDrumSweet());
         } while (loop);
     }
+    */
 
-    IEnumerator PlayDrumGoodTime()
+    public IEnumerator PlayDrumGoodTime()
     {
         GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red);
@@ -98,7 +99,7 @@ public class DrumBeat : MonoBehaviour
         GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.clear);
     }
 
-    IEnumerator PlayDrumSweet()
+    public IEnumerator PlayDrumSweet()
     {
         // Mesure 1
         GetComponent<Renderer>().material.SetColor("_Color", Color.red);

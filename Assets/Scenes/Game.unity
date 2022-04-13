@@ -4780,7 +4780,7 @@ GameObject:
   - component: {fileID: 701964605}
   - component: {fileID: 701964609}
   m_Layer: 0
-  m_Name: LightBeatDrum
+  m_Name: LightBeatDrumGood
   m_TagString: DrumBeat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4875,6 +4875,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297cd87c472844f4d8a45f678b2e3ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playGoodTime: 0
+  playSweet: 0
+  loop: 0
+  timeBeat: 0.2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
