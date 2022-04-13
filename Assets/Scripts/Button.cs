@@ -2,21 +2,30 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    //public GameObject speakerL;
-    //public GameObject speakerR;
-
-
-    //GameObject[] buttonsL;
-    //GameObject[] buttonsR;
     GameObject[] speakersL;
     GameObject[] speakersR;
+    GameObject[] lightsDirectionL;
+    GameObject[] lightsDirectionR;
+    GameObject[] lightsDrumBeat;
 
     private void Awake()
     {
-        //buttonsL = GameObject.FindGameObjectsWithTag("ButtonL");
-        //buttonsR = GameObject.FindGameObjectsWithTag("ButtonR");
         speakersL = GameObject.FindGameObjectsWithTag("SpeakerL");
         speakersR = GameObject.FindGameObjectsWithTag("SpeakerR");
+        lightsDirectionL = GameObject.FindGameObjectsWithTag("LightL");
+        lightsDirectionR = GameObject.FindGameObjectsWithTag("LightR");
+        lightsDrumBeat = GameObject.FindGameObjectsWithTag("DrumBeat");
+
+        foreach (GameObject lightDirectionL in lightsDirectionL)
+        {
+            lightDirectionL.GetComponent<Renderer>().material.SetColor("_Color", Color.clear);
+            lightDirectionL.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        }
+        foreach (GameObject lightDirectionR in lightsDirectionR)
+        {
+            lightDirectionR.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+            lightDirectionR.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.clear);
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -27,18 +36,39 @@ public class Button : MonoBehaviour
             //Debug.Log("hello");
             if (Input.GetKey(KeyCode.E))
             {
-                //play = true;
                 //Debug.Log("laterre");
                 if (CompareTag("ButtonL")) {
                     foreach (GameObject speakerR in speakersR)
                     {
-                        if(speakerR.transform.parent.name == transform.parent.name)
+                        if (speakerR.transform.parent.name == transform.parent.name)
+                        {
                             speakerR.GetComponent<AudioSource>().Stop();
+                            foreach (GameObject lightDirectionR in lightsDirectionR)
+                            {
+                                Debug.Log(lightDirectionR.transform.parent.parent.name);
+                                if (lightDirectionR.transform.parent.parent.name == transform.parent.name)
+                                {
+                                    lightDirectionR.GetComponent<Renderer>().material.SetColor("_Color", Color.clear);
+                                    lightDirectionR.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.clear);
+                                }
+                            }
+                        }
                     }
                     foreach (GameObject speakerL in speakersL)
                     {
                         if (speakerL.transform.parent.name == transform.parent.name)
+                        {
                             speakerL.GetComponent<AudioSource>().Play();
+                            foreach(GameObject lightDirectionL in lightsDirectionL)
+                            {
+                                Debug.Log(lightDirectionL.transform.parent.parent.name);
+                                if (lightDirectionL.transform.parent.parent.name == transform.parent.name)
+                                { 
+                                    lightDirectionL.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
+                                    lightDirectionL.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+                                }
+                            }
+                        }
                     }
                 }
                 if (CompareTag("ButtonR"))
@@ -46,12 +76,34 @@ public class Button : MonoBehaviour
                     foreach (GameObject speakerL in speakersL)
                     {
                         if (speakerL.transform.parent.name == transform.parent.name)
+                        {
                             speakerL.GetComponent<AudioSource>().Stop();
+                            foreach (GameObject lightDirectionL in lightsDirectionL)
+                            {
+                                Debug.Log(lightDirectionL.transform.parent.parent.name);
+                                if (lightDirectionL.transform.parent.parent.name == transform.parent.name)
+                                {
+                                    lightDirectionL.GetComponent<Renderer>().material.SetColor("_Color", Color.clear);
+                                    lightDirectionL.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.clear);
+                                }
+                            }
+                        }
                     }
                     foreach (GameObject speakerR in speakersR)
                     {
                         if (speakerR.transform.parent.name == transform.parent.name)
+                        {
                             speakerR.GetComponent<AudioSource>().Play();
+                            foreach (GameObject lightDirectionR in lightsDirectionR)
+                            {
+                                Debug.Log(lightDirectionR.transform.parent.parent.name);
+                                if (lightDirectionR.transform.parent.parent.name == transform.parent.name)
+                                {
+                                    lightDirectionR.GetComponent<Renderer>().material.SetColor("_Color", Color.white);
+                                    lightDirectionR.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
+                                }
+                            }
+                        }
                     }
                 }
             }

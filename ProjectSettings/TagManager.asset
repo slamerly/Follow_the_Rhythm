@@ -16,6 +16,8 @@ TagManager:
   - DrumBeat
   - Win
   - Loose
+  - LightL
+  - LightR
   layers:
   - Default
   - TransparentFX

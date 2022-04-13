@@ -23,7 +23,6 @@ public class CorridorExit : MonoBehaviour
         string saveString = null;
         foreach (string sub in validCorridor)
         {
-            Debug.Log(validCorridor.Count);
             if (saveString != null && saveString != sub)
             {
                 return false;
@@ -46,7 +45,37 @@ public class CorridorExit : MonoBehaviour
                     {
                         if (speaker.transform.parent.name == transform.parent.name)
                         {
-                            speaker.GetComponent<AudioSource>().Stop();
+                            //speaker.GetComponent<AudioSource>().Stop();
+                            string[] subsName = speaker.GetComponent<AudioSource>().clip.name.Split(char.Parse("_"));
+                            foreach (string sub in subsName)
+                            {
+                                if (sub == "Sweet" || sub == "Good")
+                                    validCorridor.Add(sub);
+                            }
+                            if (!CorridorIsValid())
+                                loose = true;
+                            if (CorridorIsValid() && validCorridor.Count == 4)
+                            {
+                                win = true;
+                            }
+                        }
+                    }
+                    foreach (GameObject speaker in speakersCorridorL)
+                    {
+                        if (speaker.transform.parent.name == transform.parent.name)
+                        {
+                            if (!win)
+                                speaker.GetComponent<AudioSource>().Stop();
+                        }
+                    }
+                }
+                if (CompareTag("CorridorR"))
+                {
+                    foreach (GameObject speaker in speakersCorridorR)
+                    {
+                        if (speaker.transform.parent.name == transform.parent.name)
+                        {
+                            //speaker.GetComponent<AudioSource>().Stop();
                             string[] subsName = speaker.GetComponent<AudioSource>().clip.name.Split(char.Parse("_"));
                             foreach (string sub in subsName)
                             {
@@ -59,24 +88,12 @@ public class CorridorExit : MonoBehaviour
                                 win = true;
                         }
                     }
-                }
-                if (CompareTag("CorridorR"))
-                {
                     foreach (GameObject speaker in speakersCorridorR)
                     {
                         if (speaker.transform.parent.name == transform.parent.name)
                         {
-                            speaker.GetComponent<AudioSource>().Stop();
-                            string[] subsName = speaker.GetComponent<AudioSource>().clip.name.Split(char.Parse("_"));
-                            foreach (string sub in subsName)
-                            {
-                                if (sub == "Sweet" || sub == "Good")
-                                    validCorridor.Add(sub);
-                            }
-                            if (!CorridorIsValid())
-                                loose = true;
-                            if (CorridorIsValid() && validCorridor.Count == 4)
-                                win = true;
+                            if (!win)
+                                speaker.GetComponent<AudioSource>().Stop();
                         }
                     }
                 }

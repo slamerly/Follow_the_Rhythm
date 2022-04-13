@@ -11,16 +11,8 @@ public class GameRule : MonoBehaviour
     GameObject[] ExitCorridorsL;
     GameObject[] ExitCorridorsR;
 
-    private void Awake()
-    {
-        //ExitCorridorsL = GameObject.FindGameObjectsWithTag("CorridorL");
-        //ExitCorridorsR = GameObject.FindGameObjectsWithTag("CorridorR");
-    }
-
     private void Start()
     {
-        //looseScreen = GameObject.FindGameObjectWithTag("Loose");
-        //winScreen = GameObject.FindGameObjectWithTag("Win");
         ExitCorridorsL = GameObject.FindGameObjectsWithTag("CorridorL");
         ExitCorridorsR = GameObject.FindGameObjectsWithTag("CorridorR");
         playerCtrl = GameObject.FindGameObjectWithTag("Player");
