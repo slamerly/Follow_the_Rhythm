@@ -34,10 +34,8 @@ public class Button : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("hello");
             if (Input.GetKey(KeyCode.E))
             {
-                //Debug.Log("laterre");
                 if (CompareTag("ButtonL")) {
                     foreach (GameObject speakerR in speakersR)
                     {
@@ -46,7 +44,6 @@ public class Button : MonoBehaviour
                             speakerR.GetComponent<AudioSource>().Stop();
                             foreach (GameObject lightDirectionR in lightsDirectionR)
                             {
-                                //Debug.Log(lightDirectionR.transform.parent.parent.name);
                                 if (lightDirectionR.transform.parent.parent.name == transform.parent.name)
                                 {
                                     lightDirectionR.SetActive(false);
@@ -54,15 +51,12 @@ public class Button : MonoBehaviour
                             }
                             foreach (GameObject light in lightsDrumBeat)
                             {
-                                if (light.transform.parent.name == transform.parent.name)
+                                if (light.transform.parent.parent.name == transform.parent.name)
                                 {
-                                    //StopCoroutine(coroutineDrumBeatSweet);
-                                    //StopAllCoroutines();
                                     light.SetActive(false);
                                 }
                             }
                         }
-                        //StopAllCoroutines();
                     }
                     foreach (GameObject speakerL in speakersL)
                     {
@@ -71,7 +65,6 @@ public class Button : MonoBehaviour
                             speakerL.GetComponent<AudioSource>().Play();
                             foreach(GameObject lightDirectionL in lightsDirectionL)
                             {
-                                //Debug.Log(lightDirectionL.transform.parent.parent.name);
                                 if (lightDirectionL.transform.parent.parent.name == transform.parent.name)
                                 {
                                     lightDirectionL.SetActive(true);
@@ -79,23 +72,15 @@ public class Button : MonoBehaviour
                             }
                             foreach(GameObject light in lightsDrumBeat)
                             {
-
-                                if (light.transform.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumGood")
+                                if (light.transform.parent.parent.name == transform.parent.name)
                                 {
-                                    light.SetActive(true);
-                                    StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
-                                }
-                                else if(light.transform.parent.name == transform.parent.name && transform.parent.name != "RoomStart")
-                                {
-                                    if (light.transform.name == "LightBeatDrumGood")
+                                    if (light.transform.parent.name == "RoomL")
                                     {
                                         light.SetActive(true);
-                                        StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
-                                    }
-                                    if (light.transform.name == "LightBeatDrumSweet")
-                                    {
-                                        light.SetActive(true);
-                                        StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                                        if(light.transform.name == "LightBeatDrumGood")
+                                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                                        if (light.transform.name == "LightBeatDrumSweet")
+                                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
                                     }
                                 }
                             }
@@ -111,7 +96,6 @@ public class Button : MonoBehaviour
                             speakerL.GetComponent<AudioSource>().Stop();
                             foreach (GameObject lightDirectionL in lightsDirectionL)
                             {
-                                //Debug.Log(lightDirectionL.transform.parent.parent.name);
                                 if (lightDirectionL.transform.parent.parent.name == transform.parent.name)
                                 {
                                     lightDirectionL.SetActive(false);
@@ -119,15 +103,13 @@ public class Button : MonoBehaviour
                             }
                             foreach (GameObject light in lightsDrumBeat)
                             {
-                                if (light.transform.parent.name == transform.parent.name)
+                                if (light.transform.parent.parent.name == transform.parent.name)
                                 {
-                                    //StopCoroutine(coroutineDrumBeatGoodTime);
                                     StopAllCoroutines();
                                     light.SetActive(false);
                                 }
                             }
                         }
-                        //StopAllCoroutines();
                     }
                     foreach (GameObject speakerR in speakersR)
                     {
@@ -136,7 +118,6 @@ public class Button : MonoBehaviour
                             speakerR.GetComponent<AudioSource>().Play();
                             foreach (GameObject lightDirectionR in lightsDirectionR)
                             {
-                                //Debug.Log(lightDirectionR.transform.parent.parent.name);
                                 if (lightDirectionR.transform.parent.parent.name == transform.parent.name)
                                 {
                                     lightDirectionR.SetActive(true);
@@ -144,22 +125,15 @@ public class Button : MonoBehaviour
                             }
                             foreach (GameObject light in lightsDrumBeat)
                             {
-                                if (light.transform.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumSweet")
+                                if (light.transform.parent.parent.name == transform.parent.name)
                                 {
-                                    light.SetActive(true);
-                                    StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
-                                }
-                                else if(light.transform.parent.name == transform.parent.name && transform.parent.name != "RoomStart")
-                                {
-                                    if (light.transform.name == "LightBeatDrumGood")
+                                    if (light.transform.parent.name == "RoomR")
                                     {
                                         light.SetActive(true);
-                                        StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
-                                    }
-                                    if (light.transform.name == "LightBeatDrumSweet")
-                                    {
-                                        light.SetActive(true);
-                                        StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                                        if (light.transform.name == "LightBeatDrumGood")
+                                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                                        if (light.transform.name == "LightBeatDrumSweet")
+                                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
                                     }
                                 }
                             }

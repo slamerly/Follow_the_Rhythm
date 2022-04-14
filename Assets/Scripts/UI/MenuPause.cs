@@ -31,7 +31,6 @@ public class MenuPause : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
         GamePaused = false;
     }
 
@@ -41,7 +40,6 @@ public class MenuPause : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
         GamePaused = true;
     }
 
@@ -49,7 +47,6 @@ public class MenuPause : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         GamePaused = false;
-        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 }

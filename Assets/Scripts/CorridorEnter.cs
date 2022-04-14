@@ -45,10 +45,7 @@ public class CorridorEnter : MonoBehaviour
                 }
                 foreach (GameObject light in lightsDrumBeat)
                 {
-                    Debug.Log("light : " + light.transform.parent.name);
-                    Debug.Log("ent :" + transform.parent.name);
                     if (light.transform.parent.parent.name == transform.parent.name)
-                    //if (light.transform.parent.name == transform.parent.name)
                     {
                         if (light.transform.parent.name == "CorridorL")
                         {
@@ -87,10 +84,7 @@ public class CorridorEnter : MonoBehaviour
                 }
                 foreach (GameObject light in lightsDrumBeat)
                 {
-                    Debug.Log("light : " + light.transform.parent.name);
-                    Debug.Log("ent :" + transform.parent.name);
                     if (light.transform.parent.parent.name == transform.parent.name)
-                    //if (light.transform.parent.name == transform.parent.name)
                     {
                         if (light.transform.parent.name == "CorridorR")
                         {

@@ -118,6 +118,7 @@ public class CorridorExit : MonoBehaviour
             else
             {
                 cross = false;
+                validCorridor.RemoveRange(0, validCorridor.Count);
                 if (CompareTag("CorridorL"))
                 {
                     foreach (GameObject speaker in speakersCorridorL)
@@ -128,7 +129,7 @@ public class CorridorExit : MonoBehaviour
                     foreach (GameObject light in lightsDrumBeat)
                     {
                         //if (light.transform.parent.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumGood")
-                        if (light.transform.parent.parent.parent.name == transform.parent.name)
+                        if (light.transform.parent.parent.name == transform.parent.name)
                         {
                             if (light.transform.name == "LightBeatDrumGood")
                             {
@@ -155,7 +156,7 @@ public class CorridorExit : MonoBehaviour
                     foreach (GameObject light in lightsDrumBeat)
                     {
                         //if (light.transform.parent.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumSweet")
-                        if (light.transform.parent.parent.parent.name == transform.parent.name)
+                        if (light.transform.parent.parent.name == transform.parent.name)
                         {
                             if (light.transform.name == "LightBeatDrumSweet")
                             {
