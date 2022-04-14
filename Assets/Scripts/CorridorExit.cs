@@ -10,12 +10,14 @@ public class CorridorExit : MonoBehaviour
     bool cross = false;
     GameObject[] speakersCorridorL;
     GameObject[] speakersCorridorR;
+    GameObject[] lightsDrumBeat;
     List<string> validCorridor = new List<string>();
 
     private void Awake()
     {
         speakersCorridorL = GameObject.FindGameObjectsWithTag("SpeakerCorridorL");
         speakersCorridorR = GameObject.FindGameObjectsWithTag("SpeakerCorridorR");
+        lightsDrumBeat = GameObject.FindGameObjectsWithTag("DrumBeat");
     }
 
     private bool CorridorIsValid()
@@ -60,12 +62,19 @@ public class CorridorExit : MonoBehaviour
                             }
                         }
                     }
-                    foreach (GameObject speaker in speakersCorridorL)
+                    if (!win)
                     {
-                        if (speaker.transform.parent.name == transform.parent.name)
+                        foreach (GameObject speaker in speakersCorridorL)
                         {
-                            if (!win)
+                            if (speaker.transform.parent.name == transform.parent.name)
+                            {
                                 speaker.GetComponent<AudioSource>().Stop();
+                            }
+                        }
+                        foreach (GameObject light in lightsDrumBeat)
+                        {
+                            light.GetComponent<DrumBeat>().loop = false;
+                            light.SetActive(false);
                         }
                     }
                 }
@@ -88,12 +97,19 @@ public class CorridorExit : MonoBehaviour
                                 win = true;
                         }
                     }
-                    foreach (GameObject speaker in speakersCorridorR)
+                    if (!win)
                     {
-                        if (speaker.transform.parent.name == transform.parent.name)
+                        foreach (GameObject speaker in speakersCorridorR)
                         {
-                            if (!win)
+                            if (speaker.transform.parent.name == transform.parent.name)
+                            {
                                 speaker.GetComponent<AudioSource>().Stop();
+                            }
+                        }
+                        foreach (GameObject light in lightsDrumBeat)
+                        {
+                            light.GetComponent<DrumBeat>().loop = false;
+                            light.SetActive(false);
                         }
                     }
                 }
@@ -109,6 +125,25 @@ public class CorridorExit : MonoBehaviour
                         if (speaker.transform.parent.name == transform.parent.name)
                             speaker.GetComponent<AudioSource>().Play();
                     }
+                    foreach (GameObject light in lightsDrumBeat)
+                    {
+                        //if (light.transform.parent.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumGood")
+                        if (light.transform.parent.parent.name == transform.parent.name)
+                        {
+                            if (light.transform.name == "LightBeatDrumGood")
+                            {
+                                light.SetActive(true);
+                                light.GetComponent<DrumBeat>().loop = true;
+                                StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                            }
+                            if(light.transform.name == "LightBeatDrumSweet")
+                            {
+                                light.SetActive(true);
+                                light.GetComponent<DrumBeat>().loop = true;
+                                StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                            }
+                        }
+                    }
                 }
                 if (CompareTag("CorridorR"))
                 {
@@ -116,6 +151,25 @@ public class CorridorExit : MonoBehaviour
                     {
                         if (speaker.transform.parent.name == transform.parent.name)
                             speaker.GetComponent<AudioSource>().Play();
+                    }
+                    foreach (GameObject light in lightsDrumBeat)
+                    {
+                        //if (light.transform.parent.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumSweet")
+                        if (light.transform.parent.parent.name == transform.parent.name)
+                        {
+                            if (light.transform.name == "LightBeatDrumSweet")
+                            {
+                                light.SetActive(true);
+                                light.GetComponent<DrumBeat>().loop = true;
+                                StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                            }
+                            if (light.transform.name == "LightBeatDrumGood")
+                            {
+                                light.SetActive(true);
+                                light.GetComponent<DrumBeat>().loop = true;
+                                StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                            }
+                        }
                     }
                 }
             }

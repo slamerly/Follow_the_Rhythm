@@ -18,6 +18,7 @@ TagManager:
   - Loose
   - LightL
   - LightR
+  - BassBeat
   layers:
   - Default
   - TransparentFX

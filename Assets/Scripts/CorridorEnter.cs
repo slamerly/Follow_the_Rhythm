@@ -6,6 +6,7 @@ public class CorridorEnter : MonoBehaviour
     GameObject[] speakersR;
     GameObject[] speakersCorridorL;
     GameObject[] speakersCorridorR;
+    GameObject[] lightsDrumBeat;
 
     private void Awake()
     {
@@ -13,6 +14,7 @@ public class CorridorEnter : MonoBehaviour
         speakersR = GameObject.FindGameObjectsWithTag("SpeakerR");
         speakersCorridorL = GameObject.FindGameObjectsWithTag("SpeakerCorridorL");
         speakersCorridorR = GameObject.FindGameObjectsWithTag("SpeakerCorridorR");
+        lightsDrumBeat = GameObject.FindGameObjectsWithTag("DrumBeat");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,10 +33,39 @@ public class CorridorEnter : MonoBehaviour
                     if (speaker.transform.parent.name == transform.parent.name)
                         speaker.GetComponent<AudioSource>().Stop();
                 }
+                foreach (GameObject light in lightsDrumBeat)
+                {
+                    light.GetComponent<DrumBeat>().loop = false;
+                    light.SetActive(false);
+                }
                 foreach (GameObject speaker in speakersCorridorL)
                 {
                     if (speaker.transform.parent.name == transform.parent.name)
                         speaker.GetComponent<AudioSource>().Play();
+                }
+                foreach (GameObject light in lightsDrumBeat)
+                {
+                    /*if (light.transform.parent.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumGood")
+                    {
+                        light.SetActive(true);
+                        light.GetComponent<DrumBeat>().loop = true;
+                        StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                    }*/
+                    if (light.transform.parent.parent.name == transform.parent.name)
+                    {
+                        if (light.transform.name == "LightBeatDrumGood")
+                        {
+                            light.SetActive(true);
+                            light.GetComponent<DrumBeat>().loop = true;
+                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                        }
+                        if (light.transform.name == "LightBeatDrumSweet")
+                        {
+                            light.SetActive(true);
+                            light.GetComponent<DrumBeat>().loop = true;
+                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                        }
+                    }
                 }
             }
             if (CompareTag("CorridorR"))
@@ -44,10 +75,39 @@ public class CorridorEnter : MonoBehaviour
                     if (speaker.transform.parent.name == transform.parent.name)
                         speaker.GetComponent<AudioSource>().Stop();
                 }
+                foreach (GameObject light in lightsDrumBeat)
+                {
+                    light.GetComponent<DrumBeat>().loop = false;
+                    light.SetActive(false);
+                }
                 foreach (GameObject speaker in speakersCorridorR)
                 {
                     if (speaker.transform.parent.name == transform.parent.name)
                         speaker.GetComponent<AudioSource>().Play();
+                }
+                foreach (GameObject light in lightsDrumBeat)
+                {
+                    /*if (light.transform.parent.parent.name == transform.parent.name && light.transform.name == "LightBeatDrumSweet")
+                    {
+                        light.SetActive(true);
+                        light.GetComponent<DrumBeat>().loop = true;
+                        StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                    }*/
+                    if (light.transform.parent.parent.name == transform.parent.name)
+                    {
+                        if (light.transform.name == "LightBeatDrumSweet")
+                        {
+                            light.SetActive(true);
+                            light.GetComponent<DrumBeat>().loop = true;
+                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumSweet());
+                        }
+                        if (light.transform.name == "LightBeatDrumGood")
+                        {
+                            light.SetActive(true);
+                            light.GetComponent<DrumBeat>().loop = true;
+                            StartCoroutine(light.GetComponent<DrumBeat>().PlayDrumGoodTime());
+                        }
+                    }
                 }
             }
         }
